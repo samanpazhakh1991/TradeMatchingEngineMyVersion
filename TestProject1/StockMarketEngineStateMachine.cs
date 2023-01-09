@@ -17,7 +17,7 @@ namespace TestProject1
         }
 
         [Fact]
-
+        [Trait("StockMarketMatchEngine", "States")]
         public void StockMarketEngineStateMachine_TryToChangeStateFromClosedToPreOpen_StateMustChange()
         {
             //Arrange
@@ -31,6 +31,7 @@ namespace TestProject1
         }
 
         [Fact]
+        [Trait("StockMarketMatchEngine", "States")]
         public void StockMarketEngineStateMachine_TryToChangeFromCloseedStateToOpened_MustThrowException()
         {
             //Arrange
@@ -44,6 +45,7 @@ namespace TestProject1
 
         }
         [Fact]
+        [Trait("StockMarketMatchEngine", "States")]
         public void StockMarketEngineStateMachine_TryToChangeStateFromOpenedToPreOpened_StateMustChange()
         {
             //Arrange
@@ -59,6 +61,7 @@ namespace TestProject1
         }
 
         [Fact]
+        [Trait("StockMarketMatchEngine", "States")]
         public void StockMarketEngineStateMachine_TryToChangeFromOpenedStateToClosed_MustThrowException()
         {
             //Arrange
@@ -75,6 +78,7 @@ namespace TestProject1
         }
 
         [Fact]
+        [Trait("StockMarketMatchEngine", "States")]
         public void StockMarketEngineStateMachine_TryToChangeStateFromPreOpenedToClosed_StateMustChange()
         {
             //Arrange
@@ -89,6 +93,7 @@ namespace TestProject1
             Assert.Equal(MarcketState.Close, sut.State);
         }
         [Fact]
+        [Trait("StockMarketMatchEngine", "States")]
         public void StockMarketEngineStateMachine_TryToChangeStateFromPreOpenedToOpened_StateMustChange()
         {
             //Arrange

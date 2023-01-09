@@ -11,7 +11,6 @@
             {
                 StockMarketMatchEngine.state = new PreOpened(StockMarketMatchEngine);
                 StockMarketMatchEngine.state.Code = MarcketState.PreOpen;
-                Code = MarcketState.PreOpen;
                 StockMarketMatchEngine.preOpen();
             }
             

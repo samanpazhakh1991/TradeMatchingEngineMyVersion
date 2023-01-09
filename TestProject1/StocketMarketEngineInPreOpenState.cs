@@ -13,6 +13,7 @@ namespace TestProject1
         }
 
         [Fact]
+        [Trait("StockMarketMatchEngine", "PreOpen")]
         public void StockMarketMatchEngine_1BuyOrderEnters_MustEnQueueToPreOrderQueue()
         {
         
@@ -26,12 +27,12 @@ namespace TestProject1
             };
 
             //Action
-            sut.Trade(buyOrder.Amount,buyOrder.Price,buyOrder.Side);    
+            sut.ManageOrders(buyOrder.Amount,buyOrder.Price,buyOrder.Side);    
 
             //Assert
 
             Assert.Equal(0,sut.TradeCount);
-            Assert.Single(sut.Orders);
+            Assert.Single(sut.AllOrders);
             Assert.Single(sut.GetPreOrderQueue());
             Assert.Equal(0,sut.GetBuyOrderCount());
             Assert.Equal(0,sut.GetSellOrderCount());
@@ -40,6 +41,7 @@ namespace TestProject1
         }
 
         [Fact]
+        [Trait("StockMarketMatchEngine", "PreOpen")]
         public void StockMarketMatchEngine_1SellOrderEnters_MustEnQueueToPreOrderQueue()
         {
             //Arrange
@@ -52,20 +54,21 @@ namespace TestProject1
             };
 
             //Action
-            sut.Trade(sellOrder.Amount,sellOrder.Price,sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount,sellOrder.Price,sellOrder.Side);
 
             //Assert
 
             Assert.Equal(0, sut.TradeCount);
-            Assert.Single(sut.Orders);
-            Assert.Single(sut.GetPreOrderQueue());
+            Assert.Single(sut.AllOrders);
+            Assert.Empty(sut.GetPreOrderQueue());
             Assert.Equal(0, sut.GetBuyOrderCount());
-            Assert.Equal(0, sut.GetSellOrderCount());
+            Assert.Equal(1, sut.GetSellOrderCount());
 
 
         }
 
         [Fact]
+        [Trait("StockMarketMatchEngine", "PreOpen")]
         public void StockMarketMatchEngine_MultipleSellOrderEnters_MustEnQueueToPreOrderQueue()
         {
             //Arrange
@@ -98,23 +101,24 @@ namespace TestProject1
                 Side = Side.Sell
             };
             //Action
-            sut.Trade(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
-            sut.Trade(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
-            sut.Trade(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
-            sut.Trade(sellOrder4.Amount, sellOrder4.Price, sellOrder4.Side);
+            sut.ManageOrders(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
+            sut.ManageOrders(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
+            sut.ManageOrders(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
+            sut.ManageOrders(sellOrder4.Amount, sellOrder4.Price, sellOrder4.Side);
 
             //Assert
 
             Assert.Equal(0, sut.TradeCount);
-            Assert.Equal(4, sut.Orders.Count);
-            Assert.Equal(4, sut.GetPreOrderQueue().Count);
+            Assert.Equal(4, sut.AllOrders.Count);
+            Assert.Empty(sut.GetPreOrderQueue());
             Assert.Equal(0, sut.GetBuyOrderCount());
-            Assert.Equal(0, sut.GetSellOrderCount());
+            Assert.Equal(4, sut.GetSellOrderCount());
 
 
         }
 
         [Fact]
+        [Trait("StockMarketMatchEngine", "PreOpen")]
         public void StockMarketMatchEngine_MultipleBuyOrderEnters_MustEnQueueToPreOrderQueue()
         {
             //Arrange
@@ -147,15 +151,15 @@ namespace TestProject1
                 Side = Side.Buy
             };
             //Action
-            sut.Trade(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
-            sut.Trade(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
-            sut.Trade(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
-            sut.Trade(buyOrder4.Amount, buyOrder4.Price, buyOrder4.Side);
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+            sut.ManageOrders(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
+            sut.ManageOrders(buyOrder4.Amount, buyOrder4.Price, buyOrder4.Side);
 
             //Assert
 
             Assert.Equal(0, sut.TradeCount);
-            Assert.Equal(4, sut.Orders.Count);
+            Assert.Equal(4, sut.AllOrders.Count);
             Assert.Equal(4, sut.GetPreOrderQueue().Count);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
@@ -164,6 +168,7 @@ namespace TestProject1
         }
 
         [Fact]
+        [Trait("StockMarketMatchEngine", "PreOpen")]
         public void StockMarketMatchEngine_MultipleBuyAndSellOrderEnters_MustEnQueueToPreOrderQueue()
         {
             //Arrange
@@ -223,21 +228,21 @@ namespace TestProject1
                 Side = Side.Sell
             };
             //Action
-            sut.Trade(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
-            sut.Trade(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
-            sut.Trade(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
-            sut.Trade(buyOrder4.Amount, buyOrder4.Price, buyOrder4.Side);
-            sut.Trade(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
-            sut.Trade(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
-            sut.Trade(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
-            sut.Trade(sellOrder4.Amount, sellOrder4.Price, sellOrder4.Side);
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+            sut.ManageOrders(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
+            sut.ManageOrders(buyOrder4.Amount, buyOrder4.Price, buyOrder4.Side);
+            sut.ManageOrders(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
+            sut.ManageOrders(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
+            sut.ManageOrders(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
+            sut.ManageOrders(sellOrder4.Amount, sellOrder4.Price, sellOrder4.Side);
             //Assert
 
             Assert.Equal(0, sut.TradeCount);
-            Assert.Equal(8, sut.Orders.Count);
-            Assert.Equal(8, sut.GetPreOrderQueue().Count);
+            Assert.Equal(8, sut.AllOrders.Count);
+            Assert.Equal(4, sut.GetPreOrderQueue().Count);
             Assert.Equal(0, sut.GetBuyOrderCount());
-            Assert.Equal(0, sut.GetSellOrderCount());
+            Assert.Equal(4, sut.GetSellOrderCount());
 
 
         }

@@ -24,18 +24,18 @@ namespace TestProject1
 
             var sellOrder = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Sell
             };
 
             //Action
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
             //Assert
             Assert.Equal(0, sut.TradeCount);
-            Assert.Single(sut.Orders);
+            Assert.Single(sut.AllOrders);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(1, sut.GetSellOrderCount());
         }
@@ -54,11 +54,11 @@ namespace TestProject1
             };
 
             //Action
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Assert
             Assert.Equal(0, sut.TradeCount);
-            Assert.Single(sut.Orders);
+            Assert.Single(sut.AllOrders);
             Assert.Equal(1, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -70,7 +70,7 @@ namespace TestProject1
             //Arrange
             var sellOrder1 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Sell
@@ -78,7 +78,7 @@ namespace TestProject1
 
             var sellOrder2 = new Order()
             {
-          
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Sell
@@ -86,35 +86,35 @@ namespace TestProject1
 
             var sellOrder3 = new Order()
             {
-               
+
                 Price = 110,
                 Amount = 10,
                 Side = Side.Sell
             };
             var sellOrder4 = new Order()
             {
-            
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Sell
             };
             var sellOrder5 = new Order()
             {
-             
+
                 Price = 120,
                 Amount = 10,
                 Side = Side.Sell
             };
             //Action
-            sut.Trade(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
-            sut.Trade(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
-            sut.Trade(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
-            sut.Trade(sellOrder4.Amount, sellOrder4.Price, sellOrder4.Side);
-            sut.Trade(sellOrder5.Amount, sellOrder5.Price, sellOrder5.Side);
+            sut.ManageOrders(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
+            sut.ManageOrders(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
+            sut.ManageOrders(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
+            sut.ManageOrders(sellOrder4.Amount, sellOrder4.Price, sellOrder4.Side);
+            sut.ManageOrders(sellOrder5.Amount, sellOrder5.Price, sellOrder5.Side);
 
             //Assert
             Assert.Equal(0, sut.TradeCount);
-            Assert.Equal(5, sut.Orders.Count);
+            Assert.Equal(5, sut.AllOrders.Count);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(5, sut.GetSellOrderCount());
         }
@@ -126,7 +126,7 @@ namespace TestProject1
             //Arrange
             var buyOrder1 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Buy
@@ -134,7 +134,7 @@ namespace TestProject1
 
             var buyOrder2 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Buy
@@ -142,35 +142,35 @@ namespace TestProject1
 
             var buyOrder3 = new Order()
             {
-               
+
                 Price = 110,
                 Amount = 10,
                 Side = Side.Buy
             };
             var buyOrder4 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Buy
             };
             var buyOrder5 = new Order()
             {
-                
+
                 Price = 120,
                 Amount = 10,
                 Side = Side.Buy
             };
             //Action
-            sut.Trade(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
-            sut.Trade(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
-            sut.Trade(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
-            sut.Trade(buyOrder4.Amount, buyOrder4.Price, buyOrder4.Side);
-            sut.Trade(buyOrder5.Amount, buyOrder5.Price, buyOrder5.Side);
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+            sut.ManageOrders(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
+            sut.ManageOrders(buyOrder4.Amount, buyOrder4.Price, buyOrder4.Side);
+            sut.ManageOrders(buyOrder5.Amount, buyOrder5.Price, buyOrder5.Side);
 
             //Assert
             Assert.Equal(0, sut.TradeCount);
-            Assert.Equal(5, sut.Orders.Count);
+            Assert.Equal(5, sut.AllOrders.Count);
             Assert.Equal(5, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -182,7 +182,7 @@ namespace TestProject1
             //Arrange
             var buyOrder1 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Buy
@@ -190,7 +190,7 @@ namespace TestProject1
 
             var buyOrder2 = new Order()
             {
-                
+
                 Price = 110,
                 Amount = 5,
                 Side = Side.Buy
@@ -198,35 +198,35 @@ namespace TestProject1
 
             var sellOrder1 = new Order()
             {
-               
+
                 Price = 120,
                 Amount = 10,
                 Side = Side.Sell
             };
             var sellOrder2 = new Order()
             {
-                
+
                 Price = 125,
                 Amount = 10,
                 Side = Side.Sell
             };
             var sellOrder3 = new Order()
             {
-                
+
                 Price = 120,
                 Amount = 10,
                 Side = Side.Sell
             };
             //Action
-            sut.Trade(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
-            sut.Trade(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
-            sut.Trade(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
-            sut.Trade(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
-            sut.Trade(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+            sut.ManageOrders(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
+            sut.ManageOrders(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
 
             //Assert
             Assert.Equal(0, sut.TradeCount);
-            Assert.Equal(5, sut.Orders.Count);
+            Assert.Equal(5, sut.AllOrders.Count);
             Assert.Equal(2, sut.GetBuyOrderCount());
             Assert.Equal(3, sut.GetSellOrderCount());
         }
@@ -238,27 +238,27 @@ namespace TestProject1
             //Arrange
             var buyOrder = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Buy
             };
             var sellOrder = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Sell
             };
 
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Action
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Empty(sut.Orders);
+            Assert.Empty(sut.AllOrders);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -270,27 +270,27 @@ namespace TestProject1
             //Arrange
             var buyOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Buy
             };
             var sellOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Sell
             };
 
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
 
             //Action
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Empty(sut.Orders);
+            Assert.Empty(sut.AllOrders);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -302,28 +302,28 @@ namespace TestProject1
             //Arrange
             var buyOrder = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Buy
             };
             var sellOrder = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Sell
             };
 
 
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Action
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Single(sut.Orders);
+            Assert.Single(sut.AllOrders);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(1, sut.GetSellOrderCount());
         }
@@ -335,29 +335,29 @@ namespace TestProject1
             //Arrange
             var buyOrder = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 15,
                 Side = Side.Buy
             };
             var sellOrder = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Sell
             };
 
 
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
 
             //Action
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Single(sut.Orders);
+            Assert.Single(sut.AllOrders);
             Assert.Equal(1, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -369,29 +369,29 @@ namespace TestProject1
             //Arrange
             var buyOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 15,
                 Side = Side.Buy
             };
             var sellOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Sell
             };
 
 
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
 
             //Action
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Single(sut.Orders);
+            Assert.Single(sut.AllOrders);
             Assert.Equal(1, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -403,29 +403,29 @@ namespace TestProject1
             //Arrange
             var buyOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Buy
             };
             var sellOrder = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 15,
                 Side = Side.Sell
             };
 
 
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
 
             //Action
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Single(sut.Orders);
+            Assert.Single(sut.AllOrders);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(1, sut.GetSellOrderCount());
         }
@@ -437,14 +437,14 @@ namespace TestProject1
             //Arrange
             var sellOrder1 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Sell
             };
             var sellOrder2 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 12,
                 Side = Side.Sell
@@ -452,23 +452,23 @@ namespace TestProject1
 
             var buyOrder = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 20,
                 Side = Side.Buy
             };
 
 
-            sut.Trade(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
-            sut.Trade(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
+            sut.ManageOrders(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
+            sut.ManageOrders(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
 
 
             //Action
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Assert
             Assert.Equal(2, sut.TradeCount);
-            Assert.Empty(sut.Orders);
+            Assert.Empty(sut.AllOrders);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -480,14 +480,14 @@ namespace TestProject1
             //Arrange
             var buyOrder1 = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Buy
             };
             var buyOrder2 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 12,
                 Side = Side.Buy
@@ -495,23 +495,23 @@ namespace TestProject1
 
             var sellOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 20,
                 Side = Side.Sell
             };
 
 
-            sut.Trade(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
-            sut.Trade(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
 
 
             //Action
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
             //Assert
             Assert.Equal(2, sut.TradeCount);
-            Assert.Empty(sut.Orders);
+            Assert.Empty(sut.AllOrders);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -523,14 +523,14 @@ namespace TestProject1
             //Arrange
             var sellOrder1 = new Order()
             {
-            
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Sell
             };
             var sellOrder2 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Sell
@@ -538,32 +538,32 @@ namespace TestProject1
 
             var sellOrder3 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Sell
             };
             var buyOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 13,
                 Side = Side.Buy
             };
 
-            sut.Trade(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
-            sut.Trade(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
-            sut.Trade(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
+            sut.ManageOrders(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
+            sut.ManageOrders(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
+            sut.ManageOrders(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
 
 
 
 
             //Action
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Assert
             Assert.Equal(2, sut.TradeCount);
-            Assert.Equal(2, sut.Orders.Count);
+            Assert.Equal(2, sut.AllOrders.Count);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(2, sut.GetSellOrderCount());
         }
@@ -575,14 +575,14 @@ namespace TestProject1
             //Arrange
             var buyOrder1 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 10,
                 Side = Side.Buy
             };
             var buyOrder2 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Buy
@@ -590,32 +590,32 @@ namespace TestProject1
 
             var buyOrder3 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Buy
             };
             var sellOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 13,
                 Side = Side.Sell
             };
 
-            sut.Trade(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
-            sut.Trade(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
-            sut.Trade(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+            sut.ManageOrders(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
 
 
 
 
             //Action
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
             //Assert
             Assert.Equal(2, sut.TradeCount);
-            Assert.Equal(2, sut.Orders.Count);
+            Assert.Equal(2, sut.AllOrders.Count);
             Assert.Equal(2, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -627,14 +627,14 @@ namespace TestProject1
             //Arrange
             var sellOrder1 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Sell
             };
             var sellOrder2 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 2,
                 Side = Side.Sell
@@ -642,7 +642,7 @@ namespace TestProject1
 
             var sellOrder3 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Sell
@@ -654,19 +654,19 @@ namespace TestProject1
                 Side = Side.Buy
             };
 
-            sut.Trade(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
-            sut.Trade(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
-            sut.Trade(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
+            sut.ManageOrders(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
+            sut.ManageOrders(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
+            sut.ManageOrders(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
 
 
 
 
             //Action
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Assert
             Assert.Equal(3, sut.TradeCount);
-            Assert.Single(sut.Orders);
+            Assert.Single(sut.AllOrders);
             Assert.Equal(1, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -678,14 +678,14 @@ namespace TestProject1
             //Arrange
             var buyOrder1 = new Order()
             {
-            
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Buy
             };
             var buyOrder2 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 2,
                 Side = Side.Buy
@@ -693,32 +693,32 @@ namespace TestProject1
 
             var buyOrder3 = new Order()
             {
-             
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Buy
             };
             var sellOrder = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 17,
                 Side = Side.Sell
             };
 
-            sut.Trade(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
-            sut.Trade(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
-            sut.Trade(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+            sut.ManageOrders(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
 
 
 
 
             //Action
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
             //Assert
             Assert.Equal(3, sut.TradeCount);
-            Assert.Single(sut.Orders);
+            Assert.Single(sut.AllOrders);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(1, sut.GetSellOrderCount());
         }
@@ -730,14 +730,14 @@ namespace TestProject1
             //Arrange
             var sellOrder1 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Sell
             };
             var sellOrder2 = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 2,
                 Side = Side.Sell
@@ -745,32 +745,32 @@ namespace TestProject1
 
             var sellOrder3 = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Sell
             };
             var buyOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 4,
                 Side = Side.Buy
             };
 
-            sut.Trade(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
-            sut.Trade(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
-            sut.Trade(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
+            sut.ManageOrders(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
+            sut.ManageOrders(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
+            sut.ManageOrders(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
 
 
 
 
             //Action
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Equal(3, sut.Orders.Count);
+            Assert.Equal(3, sut.AllOrders.Count);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(3, sut.GetSellOrderCount());
         }
@@ -782,14 +782,14 @@ namespace TestProject1
             //Arrange
             var buyOrder1 = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Buy
             };
             var buyOrder2 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 2,
                 Side = Side.Buy
@@ -797,32 +797,32 @@ namespace TestProject1
 
             var buyOrder3 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Buy
             };
             var sellOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 4,
                 Side = Side.Sell
             };
 
-            sut.Trade(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
-            sut.Trade(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
-            sut.Trade(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+            sut.ManageOrders(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
 
 
 
 
             //Action
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Equal(3, sut.Orders.Count);
+            Assert.Equal(3, sut.AllOrders.Count);
             Assert.Equal(3, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -834,14 +834,14 @@ namespace TestProject1
             //Arrange
             var sellOrder1 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Sell
             };
             var sellOrder2 = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 2,
                 Side = Side.Sell
@@ -849,21 +849,21 @@ namespace TestProject1
 
             var sellOrder3 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Sell
             };
             var sellOrder4 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Sell
             };
             var sellOrder5 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Sell
@@ -876,21 +876,21 @@ namespace TestProject1
                 Side = Side.Buy
             };
 
-            sut.Trade(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
-            sut.Trade(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
-            sut.Trade(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
-            sut.Trade(sellOrder4.Amount, sellOrder4.Price, sellOrder4.Side);
-            sut.Trade(sellOrder5.Amount, sellOrder5.Price, sellOrder5.Side);
+            sut.ManageOrders(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
+            sut.ManageOrders(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
+            sut.ManageOrders(sellOrder3.Amount, sellOrder3.Price, sellOrder3.Side);
+            sut.ManageOrders(sellOrder4.Amount, sellOrder4.Price, sellOrder4.Side);
+            sut.ManageOrders(sellOrder5.Amount, sellOrder5.Price, sellOrder5.Side);
 
 
 
 
             //Action
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Equal(5, sut.Orders.Count);
+            Assert.Equal(5, sut.AllOrders.Count);
             Assert.Equal(0, sut.GetBuyOrderCount());
             Assert.Equal(5, sut.GetSellOrderCount());
         }
@@ -902,14 +902,14 @@ namespace TestProject1
             //Arrange
             var buyOrder1 = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Buy
             };
             var buyOrder2 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 2,
                 Side = Side.Buy
@@ -917,21 +917,21 @@ namespace TestProject1
 
             var buyOrder3 = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Buy
             };
             var buyOrder4 = new Order()
             {
-             
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Buy
             };
             var buyOrder5 = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 8,
                 Side = Side.Buy
@@ -939,27 +939,27 @@ namespace TestProject1
 
             var sellOrder = new Order()
             {
-                
+
                 Price = 100,
                 Amount = 4,
                 Side = Side.Sell
             };
 
-            sut.Trade(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
-            sut.Trade(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
-            sut.Trade(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
-            sut.Trade(buyOrder4.Amount, buyOrder4.Price, buyOrder4.Side);
-            sut.Trade(buyOrder5.Amount, buyOrder5.Price, buyOrder5.Side);
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+            sut.ManageOrders(buyOrder3.Amount, buyOrder3.Price, buyOrder3.Side);
+            sut.ManageOrders(buyOrder4.Amount, buyOrder4.Price, buyOrder4.Side);
+            sut.ManageOrders(buyOrder5.Amount, buyOrder5.Price, buyOrder5.Side);
 
 
 
 
             //Action
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Equal(5, sut.Orders.Count);
+            Assert.Equal(5, sut.AllOrders.Count);
             Assert.Equal(5, sut.GetBuyOrderCount());
             Assert.Equal(0, sut.GetSellOrderCount());
         }
@@ -971,14 +971,14 @@ namespace TestProject1
             //Arrange
             var buyOrder1 = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Buy
             };
             var buyOrder2 = new Order()
             {
-              
+
                 Price = 90,
                 Amount = 2,
                 Side = Side.Buy
@@ -987,21 +987,21 @@ namespace TestProject1
 
             var sellOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 6,
                 Side = Side.Sell
             };
 
-            sut.Trade(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
-            sut.Trade(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
 
             //Action
-            sut.Trade(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Equal(2, sut.Orders.Count);
+            Assert.Equal(2, sut.AllOrders.Count);
             Assert.Equal(1, sut.GetBuyOrderCount());
             Assert.Equal(1, sut.GetSellOrderCount());
         }
@@ -1013,14 +1013,14 @@ namespace TestProject1
             //Arrange
             var sellOrder1 = new Order()
             {
-              
+
                 Price = 100,
                 Amount = 5,
                 Side = Side.Sell
             };
             var sellOrder2 = new Order()
             {
-              
+
                 Price = 110,
                 Amount = 2,
                 Side = Side.Sell
@@ -1029,23 +1029,66 @@ namespace TestProject1
 
             var buyOrder = new Order()
             {
-               
+
                 Price = 100,
                 Amount = 6,
                 Side = Side.Buy
             };
 
-            sut.Trade(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
-            sut.Trade(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
+            sut.ManageOrders(sellOrder1.Amount, sellOrder1.Price, sellOrder1.Side);
+            sut.ManageOrders(sellOrder2.Amount, sellOrder2.Price, sellOrder2.Side);
 
             //Action
-            sut.Trade(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
+            sut.ManageOrders(buyOrder.Amount, buyOrder.Price, buyOrder.Side);
 
             //Assert
             Assert.Equal(1, sut.TradeCount);
-            Assert.Equal(2, sut.Orders.Count);
+            Assert.Equal(2, sut.AllOrders.Count);
             Assert.Equal(1, sut.GetBuyOrderCount());
             Assert.Equal(1, sut.GetSellOrderCount());
+        }
+
+        [Fact]
+        [Trait("StockMarketMatchEngine", "Open")]
+        public void StockMarketMatchEngine_BuyOrderEnters_SellOrderEnterWithHalfAmount_BuyOrderEntersWithCoverAmount_MustTwoTradeExecuteAndNoOrderRemain()
+        {
+            //Arrange
+            var buyOrder1 = new Order()
+            {
+
+                Price = 100,
+                Amount = 5,
+                Side = Side.Buy
+            };
+            var sellOrder = new Order()
+            {
+
+                Price = 100,
+                Amount = 10,
+                Side = Side.Sell
+            };
+
+
+            var buyOrder2 = new Order()
+            {
+
+                Price = 100,
+                Amount = 5,
+                Side = Side.Buy
+            };
+
+            sut.ManageOrders(buyOrder1.Amount, buyOrder1.Price, buyOrder1.Side);
+            sut.ManageOrders(sellOrder.Amount, sellOrder.Price, sellOrder.Side);
+
+            //Action
+            sut.ManageOrders(buyOrder2.Amount, buyOrder2.Price, buyOrder2.Side);
+
+            //Assert
+            Assert.Equal(2, sut.TradeCount);
+            Assert.Equal(0, sut.AllOrders.Count);
+            Assert.Equal(0, sut.GetBuyOrderCount());
+            Assert.Equal(0, sut.GetSellOrderCount());
+            Assert.Equal(2, sut.GetTradesInfo().Count);
         }
     }
 }
